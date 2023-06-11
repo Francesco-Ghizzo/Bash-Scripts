@@ -12,7 +12,7 @@
 
 # ./cut_columns.sh file.csv 2 3
 
-delimiter=","
+delimiter=";"
 
 filename=$1
 
@@ -24,9 +24,9 @@ cut_columns=""
 
 for (( column=start_column; column<=end_column; column++ ))
 do
-	cut_columns+="<(cut -d$delimiter -f$column < $filename | head) "
+	cut_columns+="<(cut -d\\$delimiter -f$column < $filename) "
 done
 
-full_command="paste -d, "$cut_columns
+full_command="paste -d\\$delimiter "$cut_columns
 
 eval $full_command
